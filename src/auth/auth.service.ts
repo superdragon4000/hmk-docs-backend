@@ -36,11 +36,11 @@ export class AuthService {
       throw new BadRequestException('User with this email already exists');
     }
 
-    const saltRounds = this.configService.get<number>('BCRYPT_SALT_ROUNDS', 12);
+    const saltRounds = this.getBcryptSaltRounds();
     const passwordHash = await bcrypt.hash(password, saltRounds);
     const user = await this.usersService.create(email, passwordHash);
 
-    await this.mailService.sendWelcomeEmail(user.email);
+    // await this.mailService.sendWelcomeEmail(user.email);
 
     return this.issueTokens(user);
   }
@@ -158,5 +158,16 @@ export class AuthService {
     };
 
     return new Date(Date.now() + value * multipliers[unit]);
+  }
+
+  private getBcryptSaltRounds(): number {
+    const rawValue = this.configService.get<string>('BCRYPT_SALT_ROUNDS', '12');
+    const parsed = Number.parseInt(rawValue, 10);
+
+    if (!Number.isFinite(parsed) || parsed < 4 || parsed > 15) {
+      return 12;
+    }
+
+    return parsed;
   }
 }

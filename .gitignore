@@ -1,6 +1,11 @@
 node_modules/
 dist/
 .env
-storage/
+storage/*
+!storage/catalogs/
+storage/catalogs/*
+!storage/catalogs/hidromek-hmk220lc-gen1.pdf
+!storage/catalogs/hidromek-hmk220lc-gen2.pdf
+!storage/catalogs/hidromek-hmk102b-alpha.pdf
 coverage/
 *.log

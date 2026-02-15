@@ -13,6 +13,7 @@
     "migration:run": "npm run typeorm -- migration:run",
     "migration:revert": "npm run typeorm -- migration:revert",
     "seed:catalogs": "ts-node src/database/seeds/catalogs.seed.ts",
+    "seed:users": "ts-node src/database/seeds/users.seed.ts",
     "lint": "eslint \"src/**/*.ts\"",
     "test": "jest"
   },

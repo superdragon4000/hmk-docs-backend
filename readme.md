@@ -24,6 +24,7 @@ cp .env.example .env
 npm install
 npm run migration:run
 npm run seed:catalogs
+npm run seed:users
 npm run start:dev
 ```
 
@@ -53,6 +54,22 @@ npm run migration:generate
 ```bash
 npm run seed:catalogs
 ```
+
+## Seed пользователей
+
+Создаёт/обновляет 2 тестовых аккаунта:
+
+- `test@test.com` (с активной подпиской)
+- `test1@test.com` (без активной подписки)
+
+Запуск:
+
+```bash
+npm run seed:users
+```
+
+По умолчанию пароль для обоих пользователей: `Test123456!`.
+Можно переопределить через переменную `SEED_USERS_PASSWORD`.
 
 ## Ключевые endpoint'ы
 
